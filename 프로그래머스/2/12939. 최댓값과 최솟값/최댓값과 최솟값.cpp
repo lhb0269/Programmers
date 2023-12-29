@@ -1,26 +1,20 @@
 #include <string>
 #include <vector>
 #include<sstream>
+#include<algorithm>
 using namespace std;
 
 string solution(string s) {
-    int min = 100000;
-    int max = -100000;
     vector<string>st;
+    vector<int>v;
     stringstream ss(s);
     string answer = "";
     string word;
     while (getline(ss, word, ' ')) {
         int num = stoi(word);
-        if (num < min)
-            min = num;
-        if (num > max)
-            max = num;
+        v.push_back(num);
     }
-    answer += to_string(min) + " " + to_string(max);
+    sort(v.begin(),v.end());
+    answer += to_string(v.front()) + " " + to_string(v.back());
     return answer;
-}
-int main()
-{
-    solution("1 2 3 4");
 }
